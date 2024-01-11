@@ -3,7 +3,7 @@ const {DailyNotes, User} = require('../models')
 const getNote = async (req, res) => {
   try {
     const {id} = req.params
-    const data = await DailyNotes.findByFk({
+    const data = await DailyNotes.findOne({
       where: {
         id_daily: id
       }
@@ -50,7 +50,7 @@ const addNotes = async (req, res) => {
     const id_user = req.userId
     const query = {
       ...req.body,
-      id_user
+      id_user,
     }
     const data = await DailyNotes.create(query)
     return res.status(201).json({

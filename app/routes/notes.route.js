@@ -1,5 +1,7 @@
 const NotesController = require("../controllers/notes.controller");
 const { verifyToken } = require("../middlewares/auth.jwt");
+const { haveNotes } = require("../middlewares/authoriztion")
+
 require("dotenv").config();
 
 module.exports = (express, app, default_router = "/api") => {
