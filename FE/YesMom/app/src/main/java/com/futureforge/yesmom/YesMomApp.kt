@@ -14,8 +14,12 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.futureforge.yesmom.navigation.Screen
 import com.futureforge.yesmom.ui.components.BottomBar
+import com.futureforge.yesmom.ui.pages.calendar.CalendarPage
+import com.futureforge.yesmom.ui.pages.daily_notes.DailyNotesPage
+import com.futureforge.yesmom.ui.pages.find_doctor.FindDoctorPage
 import com.futureforge.yesmom.ui.pages.home.HomePage
 import com.futureforge.yesmom.ui.pages.login.LoginPage
+import com.futureforge.yesmom.ui.pages.profile.ProfilePage
 import com.futureforge.yesmom.ui.pages.register.RegisterPage
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -54,6 +58,18 @@ fun YesMomApp(
             }
             composable(Screen.Register.route) {
                 RegisterPage()
+            }
+            composable(Screen.FindDoctor.route) {
+                FindDoctorPage()
+            }
+            composable(Screen.Calendar.route) {
+                CalendarPage()
+            }
+            composable(Screen.DailyNotes.route) {
+                DailyNotesPage()
+            }
+            composable(Screen.Profile.route) {
+                ProfilePage()
             }
         }
     }

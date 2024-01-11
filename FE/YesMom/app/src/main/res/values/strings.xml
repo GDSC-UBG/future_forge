@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">YesMom!</string>
     <string name="menu_home">Home</string>
+    <string name="menu_find_doctor">Cari Dokter</string>
+    <string name="menu_calendar">Calendar</string>
+    <string name="menu_daily_notes">Catatan Harian</string>
+    <string name="menu_profile">Profil</string>
 </resources>

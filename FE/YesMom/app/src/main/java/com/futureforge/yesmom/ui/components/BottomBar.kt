@@ -1,9 +1,11 @@
 package com.futureforge.yesmom.ui.components
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -35,9 +37,25 @@ fun BottomBar(
 
         val navigationItems = listOf(
             NavigationItem(
+                title = stringResource(R.string.menu_find_doctor),
+                icon = Icons.Default.Search,
+                screen = Screen.FindDoctor
+            ),NavigationItem(
+                title = stringResource(R.string.menu_calendar),
+                icon = Icons.Default.DateRange,
+                screen = Screen.Calendar
+            ),NavigationItem(
                 title = stringResource(R.string.menu_home),
                 icon = Icons.Default.Home,
                 screen = Screen.Home
+            ),NavigationItem(
+                title = stringResource(R.string.menu_daily_notes),
+                icon = Icons.Default.List,
+                screen = Screen.DailyNotes
+            ),NavigationItem(
+                title = stringResource(R.string.menu_profile),
+                icon = Icons.Default.Person,
+                screen = Screen.Profile
             ),
 
         )
