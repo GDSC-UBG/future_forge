@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Schadule extends Model {
     /**
@@ -13,17 +11,24 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  Schadule.init({
-    id_schadule: DataTypes.INTEGER,
-    id_user: DataTypes.INTEGER,
-    title: DataTypes.STRING,
-    text: DataTypes.TEXT,
-    type: DataTypes.ENUM,
-    start_date: DataTypes.DATE,
-    end_date: DataTypes.DATE,
-  }, {
-    sequelize,
-    modelName: 'Schadule',
-  });
+  Schadule.init(
+    {
+      id_schadule: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+      },
+      id_user: DataTypes.INTEGER,
+      title: DataTypes.STRING,
+      text: DataTypes.TEXT,
+      type: DataTypes.ENUM,
+      start_date: DataTypes.DATE,
+      end_date: DataTypes.DATE,
+    },
+    {
+      sequelize,
+      modelName: "Schadule",
+    }
+  );
   return Schadule;
 };

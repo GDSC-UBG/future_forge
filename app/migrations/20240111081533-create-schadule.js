@@ -1,49 +1,43 @@
-'use strict';
+"use strict";
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Schadules', {
+    await queryInterface.createTable("Schadules", {
       id_schadule: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       id_user: {
         type: Sequelize.INTEGER,
-        references: {
-          model: 'Users',
-          key: 'id_user'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
       },
       title: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       text: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
       },
       type: {
-        type: Sequelize.ENUM('daily', 'weekly', 'monthly')
+        type: Sequelize.ENUM("daily", "weekly", "monthly"),
       },
       start_date: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       end_date: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Schadules');
-  }
+    await queryInterface.dropTable("Schadules");
+  },
 };

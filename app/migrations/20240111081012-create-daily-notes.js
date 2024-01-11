@@ -1,40 +1,34 @@
-'use strict';
+"use strict";
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('DailyNotes', {
+    await queryInterface.createTable("DailyNotes", {
       id_daily: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       id_user: {
         type: Sequelize.INTEGER,
-        references: {
-          model: 'Users',
-          key: 'id_user'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
       },
       text: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
       },
       emotional_score: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('DailyNotes');
-  }
+    await queryInterface.dropTable("DailyNotes");
+  },
 };
