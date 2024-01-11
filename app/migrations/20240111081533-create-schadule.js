@@ -19,12 +19,9 @@ module.exports = {
         type: Sequelize.TEXT,
       },
       type: {
-        type: Sequelize.ENUM("daily", "weekly", "monthly"),
+        type: Sequelize.ENUM("once", "daily", "weekly", "monthly"),
       },
-      start_date: {
-        type: Sequelize.DATE,
-      },
-      end_date: {
+      date: {
         type: Sequelize.DATE,
       },
       createdAt: {

@@ -21,9 +21,8 @@ module.exports = (sequelize, DataTypes) => {
       id_user: DataTypes.INTEGER,
       title: DataTypes.STRING,
       text: DataTypes.TEXT,
-      type: DataTypes.ENUM("daily", "weekly", "monthly"),
-      start_date: DataTypes.DATE,
-      end_date: DataTypes.DATE,
+      type: DataTypes.ENUM("once", "daily", "weekly", "monthly"),
+      date: DataTypes.DATE,
     },
     {
       sequelize,

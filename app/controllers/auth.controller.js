@@ -1,4 +1,4 @@
-const { Users, Task } = require("../models");
+const { Users } = require("../models");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
@@ -41,7 +41,7 @@ const login = async (req, res) => {
 
         // create token jwt
 
-        let key = jwt.sign({ id: user.id }, process.env.JWT_KEY, {
+        let key = jwt.sign({ id: user.id_user }, process.env.JWT_KEY, {
           expiresIn: 86400 * 2, // 2 days
         });
 
