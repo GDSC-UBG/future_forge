@@ -61,8 +61,6 @@ const updateUser = async (req, res) => {
 };
 
 module.exports = {
-  signUp,
-  signIn,
   getAllUser,
   getDetailUser,
   updateUser,

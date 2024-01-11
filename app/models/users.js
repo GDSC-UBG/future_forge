@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       email: DataTypes.STRING,
       password: DataTypes.STRING,
       google_id: DataTypes.STRING,
-      role: DataTypes.ENUM,
+      role: DataTypes.ENUM("admin", "client", "doctor"),
       picture: DataTypes.STRING,
       birthdate: DataTypes.STRING,
       child_count: DataTypes.STRING,
