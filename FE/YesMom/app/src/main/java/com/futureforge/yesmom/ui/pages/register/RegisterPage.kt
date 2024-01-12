@@ -1,5 +1,7 @@
 package com.futureforge.yesmom.ui.pages.register
 
+import android.content.Context
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -24,6 +26,8 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -45,18 +49,60 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
 import com.futureforge.yesmom.R
+import com.futureforge.yesmom.common.UiState
+import com.futureforge.yesmom.navigation.Screen
+import com.futureforge.yesmom.ui.factory.ViewModelFactory
+import com.futureforge.yesmom.ui.pages.login.LoginViewModel
 import com.futureforge.yesmom.ui.theme.YesMomTheme
 
 
 @Composable
-fun RegisterPage() {
-    RegisterContent()
+fun RegisterPage(
+    context: Context,
+    registerViewModel: RegisterViewModel =
+        viewModel(factory = ViewModelFactory.getInstance(context)),
+    navController: NavHostController
+) {
+    RegisterContent(onRegisterClick = {name, email, password ->
+        registerViewModel.registerWithEmail(name, email, password)
+    })
+
+    registerViewModel.registerState.collectAsState(
+        initial = UiState.Loading
+    ).value.let { uiState ->
+        when (uiState) {
+            is UiState.Loading -> {
+
+            }
+
+            is UiState.Success -> {
+                Toast.makeText(context, uiState.data.msg.toString(), Toast.LENGTH_SHORT).show()
+                LaunchedEffect(key1 = uiState.data.msg) {
+                    registerViewModel.setRegisterState(UiState.Loading)
+                }
+                navController.navigate(Screen.Login.route)
+            }
+
+            is UiState.Error -> {
+                Toast.makeText(context, "Register Failed", Toast.LENGTH_SHORT).show()
+                LaunchedEffect(key1 = "failed") {
+                    registerViewModel.setRegisterState(UiState.Loading)
+                }
+            }
+
+            else -> {}
+        }
+    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RegisterContent() {
+fun RegisterContent(
+    onRegisterClick : (String,String, String ) ->Unit
+) {
     var emailValue by remember {
         mutableStateOf("")
     }
@@ -228,6 +274,7 @@ fun RegisterContent() {
 
         Button(
             onClick = {
+                      onRegisterClick(usernameValue, emailValue, passwordValue)
             },
             shape = RoundedCornerShape(12.dp),
             contentPadding = PaddingValues(10.dp),
@@ -277,10 +324,10 @@ fun RegisterContent() {
     }
 }
 
-@Preview(showBackground = true, device = Devices.PIXEL_4)
-@Composable
-fun RegisterContentPrev() {
-    YesMomTheme {
-        RegisterContent()
-    }
-}
+//@Preview(showBackground = true, device = Devices.PIXEL_4)
+//@Composable
+//fun RegisterContentPrev() {
+//    YesMomTheme {
+//        RegisterContent()
+//    }
+//}

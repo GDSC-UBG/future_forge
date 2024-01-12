@@ -8,14 +8,14 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class ApiConfig {
     companion object {
-        val BASE_URL = "https://backend1-qzabwolita-et.a.run.app"
+        val BASE_URL = "https://generally-organic-molly.ngrok-free.app/api/v1/"
         fun getApiService(token: String): ApiService {
             val loggingInterceptor =
                 HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
             val authInterceptor = Interceptor { chain ->
                 val req = chain.request()
                 val requestHeaders = req.newBuilder()
-                    .addHeader("Authorization", "Bearer $token")
+                    .addHeader("x-api-key", token)
                     .build()
                 chain.proceed(requestHeaders)
             }

@@ -1,7 +1,9 @@
 package com.futureforge.yesmom.ui.pages.calendar
 
-import android.util.Log
-import androidx.compose.foundation.Image
+import android.content.Context
+import android.os.Build
+import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,7 +15,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
@@ -25,16 +26,17 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
+
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -45,7 +47,13 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
 import com.futureforge.yesmom.R
+import com.futureforge.yesmom.common.UiState
+import com.futureforge.yesmom.navigation.Screen
+import com.futureforge.yesmom.ui.factory.ViewModelFactory
+import com.futureforge.yesmom.ui.pages.register.RegisterViewModel
 import com.futureforge.yesmom.ui.theme.YesMomTheme
 import com.maxkeppeker.sheets.core.models.base.rememberSheetState
 import com.maxkeppeler.sheets.calendar.CalendarDialog
@@ -53,16 +61,54 @@ import com.maxkeppeler.sheets.calendar.models.CalendarConfig
 import com.maxkeppeler.sheets.calendar.models.CalendarSelection
 import com.maxkeppeler.sheets.clock.ClockDialog
 import com.maxkeppeler.sheets.clock.models.ClockSelection
-import java.time.LocalDate
-
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun CalendarPage() {
-    CalendarContent()
+fun CalendarPage(
+    context: Context,
+    calendarViewModel: CalendarViewModel =
+        viewModel(factory = ViewModelFactory.getInstance(context)),
+    navController: NavHostController
+) {
+
+    calendarViewModel.calendarState.collectAsState(
+        initial = UiState.Loading
+    ).value.let { uiState ->
+        when (uiState) {
+            is UiState.Loading -> {
+
+            }
+
+            is UiState.Success -> {
+                Toast.makeText(context, uiState.data.message, Toast.LENGTH_SHORT).show()
+                LaunchedEffect(key1 = uiState.data.message) {
+                    calendarViewModel.setCalendarState(UiState.Loading)
+                }
+            }
+
+            is UiState.Error -> {
+                Toast.makeText(context, "Post Data Failed", Toast.LENGTH_SHORT).show()
+                LaunchedEffect(key1 = "failed") {
+                    calendarViewModel.setCalendarState(UiState.Loading)
+                }
+            }
+
+            else -> {}
+        }
+    }
+
+    CalendarContent(
+        onClickSubmit = {title, text, type, date ->
+                calendarViewModel.scheduleCalendar(title, text, type, date)
+        }
+    )
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CalendarContent() {
+fun CalendarContent(
+    onClickSubmit: (String, String, String, String) -> Unit
+) {
     var titleValue by remember {
         mutableStateOf("")
     }
@@ -82,7 +128,7 @@ fun CalendarContent() {
     ClockDialog(
         state = clockState,
         selection = ClockSelection.HoursMinutes{hours, minutes ->
-            timeInput = "$hours:$minutes"
+            timeInput = "$hours:$minutes:00"
         } )
 
     CalendarDialog(
@@ -92,7 +138,7 @@ fun CalendarContent() {
             yearSelection = true,
         ),
         selection = CalendarSelection.Date{date ->
-          dateInput = date.toString()
+          dateInput = "$date"
         })
 
     Column(
@@ -316,7 +362,7 @@ fun CalendarContent() {
             }
             Button(
                 onClick = {
-
+                    onClickSubmit(titleValue,deksriptionValue, "once", "$dateInput $timeInput")
                 },
                 shape = RoundedCornerShape(12.dp),
                 contentPadding = PaddingValues(10.dp),
@@ -340,10 +386,10 @@ fun CalendarContent() {
     }
 }
 
-@Preview(showBackground = true, device = Devices.PIXEL_4)
-@Composable
-fun CalendarContentPrev() {
-    YesMomTheme {
-        CalendarContent()
-    }
-}
+//@Preview(showBackground = true, device = Devices.PIXEL_4)
+//@Composable
+//fun CalendarContentPrev() {
+//    YesMomTheme {
+//        CalendarContent()
+//    }
+//}

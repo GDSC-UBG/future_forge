@@ -5,9 +5,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.futureforge.yesmom.data.repo.YesMomRepository
 import com.futureforge.yesmom.di.Injection
+import com.futureforge.yesmom.ui.pages.calendar.CalendarViewModel
+import com.futureforge.yesmom.ui.pages.daily_notes.DailyNotesViewModel
 import com.futureforge.yesmom.ui.pages.home.HomeViewModel
 import com.futureforge.yesmom.ui.pages.login.LoginViewModel
 import com.futureforge.yesmom.ui.pages.profile.ProfileViewModel
+import com.futureforge.yesmom.ui.pages.register.RegisterViewModel
 
 class ViewModelFactory(private val repository: YesMomRepository) :
     ViewModelProvider.NewInstanceFactory() {
@@ -20,6 +23,15 @@ class ViewModelFactory(private val repository: YesMomRepository) :
             return HomeViewModel(repository) as T
         }else if (modelClass.isAssignableFrom(ProfileViewModel::class.java)) {
             return ProfileViewModel(repository) as T
+        }
+        else if (modelClass.isAssignableFrom(RegisterViewModel::class.java)) {
+            return RegisterViewModel(repository) as T
+        }
+        else if (modelClass.isAssignableFrom(CalendarViewModel::class.java)) {
+            return CalendarViewModel(repository) as T
+        }
+        else if (modelClass.isAssignableFrom(DailyNotesViewModel::class.java)) {
+            return DailyNotesViewModel(repository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }

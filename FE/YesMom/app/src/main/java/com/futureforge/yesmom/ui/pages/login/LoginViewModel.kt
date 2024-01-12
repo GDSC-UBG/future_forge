@@ -29,9 +29,6 @@ class LoginViewModel(
         _loginState.value = state
     }
 
-    fun getUserIdSession(): Int {
-        return repository.getUserIdSession()
-    }
 
 
 
@@ -58,11 +55,11 @@ class LoginViewModel(
                     _loginState.value = UiState.Error(it.message.toString())
                 }
                 .collect {
-                    if (!it.email.isNullOrEmpty()) {
+                    if (!it.key.isNullOrEmpty()) {
                         _loginState.value = UiState.Success(it)
                         repository.saveSessionData(
-                            it.accessToken.toString(),
-                            userId = it.userId
+                            it.key.toString(),
+//                            userId = it.userId
                         )
                     } else {
                         _loginState.value = UiState.Error("Failed")

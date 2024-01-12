@@ -23,6 +23,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -47,6 +48,9 @@ import com.futureforge.yesmom.R
 fun DialogDailyNotes(
     onDismissRequest: () -> Unit,
     onConfirmation: () -> Unit,
+    state: String,
+    onChangeState: (String) -> Unit,
+    day: String
 ) {
     Dialog(onDismissRequest = { onDismissRequest() }) {
         Card(
@@ -108,7 +112,7 @@ fun DialogDailyNotes(
                     }
 
                     Text(
-                        text = "Selasa",
+                        text = day,
                         style = TextStyle(
                             fontSize = 16.sp,
                             fontWeight = FontWeight(500),
@@ -226,8 +230,8 @@ fun DialogDailyNotes(
                             .padding(top = 15.dp)
                     )
                     OutlinedTextField(
-                        value = "",
-                        onValueChange = { },
+                        value = state,
+                        onValueChange = { onChangeState(it)},
                         label = {
                             Text(
                                 text = "Catatan Untuk Hari Ini...",

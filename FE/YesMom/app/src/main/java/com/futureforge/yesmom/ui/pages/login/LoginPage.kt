@@ -103,8 +103,8 @@ fun LoginPage(
             }
 
             is UiState.Success -> {
-                Toast.makeText(context, "Login Success", Toast.LENGTH_SHORT).show()
-                LaunchedEffect(key1 = uiState.data.email) {
+                Toast.makeText(context, uiState.data.msg.toString(), Toast.LENGTH_SHORT).show()
+                LaunchedEffect(key1 = "Login Success") {
                     loginViewModel.setLoginState(UiState.Loading)
                 }
                 navController.navigate(Screen.Home.route)
@@ -112,6 +112,9 @@ fun LoginPage(
 
             is UiState.Error -> {
                 Toast.makeText(context, "Login Failed", Toast.LENGTH_SHORT).show()
+                LaunchedEffect(key1 = "failed") {
+                    loginViewModel.setLoginState(UiState.Loading)
+                }
             }
 
             else -> {}
@@ -119,7 +122,7 @@ fun LoginPage(
     }
 
     LoginContent(onLoginWithEmailClick = {email, password ->
-        loginViewModel.loginWithEmail("kyy47@gmail.com", "#Kyy47123")
+        loginViewModel.loginWithEmail(email, password)
     }, navController = navController)
 }
 
