@@ -18,8 +18,15 @@ module.exports = {
       text: {
         type: Sequelize.TEXT,
       },
-      emotional_score: {
-        type: Sequelize.STRING,
+      status: {
+        type: Sequelize.ENUM([
+          "pending",
+          "proses",
+          "sending",
+          "failed",
+          "read",
+        ]),
+        defaultValue: "pending",
       },
       createdAt: {
         allowNull: false,
