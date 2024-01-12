@@ -10,7 +10,7 @@ Project ini dibuat menggunakan express js sebagai web service dan kotlin sebagai
 
 Based on the sequence diagram in [stage-1](https://drive.google.com/file/d/1ZLoMWPsw7mnUXtV4cZcH6Qx2bzsz3_T-/view?usp=sharing) the feature that we created shows that users will receive a daily remainder notification, then click on the notification to add daily notes. Following are the procedures for using the application based on sequence diagrams and a few additions to support the process.
 
-- First, download and install the yesmom prototype application at the following [Link](https://)
+- First, download and install the yesmom prototype application at the following [Link](https://drive.google.com/file/d/1GgvGpEpiopOsLwMenamYNjEE1NYdhr30/view?usp=drive_link)
 - Do **Register** and **Login**.
 - Create a schedule on the calendar page, suggestions for making a schedule for the near future so that you can get test notifications immediately, for example in the next 5 minutes.
 - then finally add your daily notes.
