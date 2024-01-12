@@ -52,7 +52,7 @@ const addNotes = async (req, res) => {
       ...req.body,
       id_user,
     }
-    const data = await DailyNotes.create(query)
+
     return res.status(201).json({
       msg: "succes create daily note",
       data

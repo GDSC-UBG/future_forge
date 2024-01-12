@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       id_user: DataTypes.INTEGER,
       text: DataTypes.TEXT,
-      emotional_score: DataTypes.STRING,
+      emotional_score: DataTypes.INTEGER,
     },
     {
       sequelize,

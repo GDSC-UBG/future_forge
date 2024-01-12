@@ -16,7 +16,7 @@ module.exports = {
         type: Sequelize.TEXT,
       },
       emotional_score: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,
