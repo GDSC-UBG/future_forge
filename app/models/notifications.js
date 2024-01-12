@@ -21,7 +21,13 @@ module.exports = (sequelize, DataTypes) => {
       id_user: DataTypes.INTEGER,
       title: DataTypes.STRING,
       text: DataTypes.TEXT,
-      emotional_score: DataTypes.STRING,
+      status: DataTypes.ENUM([
+        "pending",
+        "proses",
+        "sending",
+        "failed",
+        "read",
+      ]),
     },
     {
       sequelize,

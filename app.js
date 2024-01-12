@@ -3,15 +3,27 @@ const app = express();
 const cors = require("cors");
 const bodyParser = require("body-parser");
 require("dotenv").config();
+var cron = require("node-cron");
+const {
+  scheduleDailyNotifications,
+} = require("./app/services/schaduler.service");
 
 app.use(cors());
-app.use(bodyParser.json());
+
+// Ganti penggunaan bodyParser.json() menjadi bodyParser.urlencoded()
+// dan atur opsi extended ke true
+app.use(bodyParser.urlencoded({ extended: true }));
 
 const default_router = `/api/${process.env.APP_VERSION}`;
 require("./app/routes")(express, app, default_router);
 
-// app.get("/test", () => {
-//   console.log("asd");
-// });
+// try {
+//   cron.schedule("*/5 * * * * *", () => {
+//     console.log("Running a task");
+//     scheduleDailyNotifications();
+//   });
+// } catch (error) {
+//   console.log(error);
+// }
 
 module.exports = app;

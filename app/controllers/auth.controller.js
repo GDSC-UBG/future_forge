@@ -1,16 +1,27 @@
 const { Users } = require("../models");
+const { createTokenFCM } = require("../services/fcm.service");
+const { createSchadule } = require("../services/schaduler.service");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const register = async (req, res) => {
   try {
     req.body.password = bcrypt.hashSync(req.body.password, 8);
-    await Users.create(req.body).then((result) => {
+    await Users.create(req.body).then(async (user) => {
+      // create daily schadule
+      await createSchadule(
+        user.id_user,
+        "Daily Note Remainder",
+        "Time to jot down your thoughts and reflections for the day!",
+        "daily",
+        "2024-01-12 17:00:00"
+      );
+
       return res.status(201).json({
         msg: "Successfully register",
         data: {
-          id: result.id,
-          name: result.name,
+          id: user.id,
+          name: user.name,
         },
       });
     });
