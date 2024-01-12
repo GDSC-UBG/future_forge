@@ -9,7 +9,10 @@ const {
 } = require("./app/services/schaduler.service");
 
 app.use(cors());
-app.use(bodyParser.json());
+
+// Ganti penggunaan bodyParser.json() menjadi bodyParser.urlencoded()
+// dan atur opsi extended ke true
+app.use(bodyParser.urlencoded({ extended: true }));
 
 const default_router = `/api/${process.env.APP_VERSION}`;
 require("./app/routes")(express, app, default_router);

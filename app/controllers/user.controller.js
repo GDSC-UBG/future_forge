@@ -19,21 +19,21 @@ const getAllUser = async (req, res) => {
 
 const completedProfileUser = async (req, res) => {
   try {
-    const id = req.userId
+    const id = req.userId;
     await Users.update(req.body, {
       where: {
-        id_user: id
-      }
-    })
+        id_user: id,
+      },
+    });
     return res.status(200).json({
-      msg: 'succes create detail user'
-    })
+      msg: "succes create detail user",
+    });
   } catch (error) {
     return res.status(500).json({
-      msg: error.message
-    })
+      msg: error.message,
+    });
   }
-}
+};
 
 const getDetailUser = async (req, res) => {
   try {
@@ -56,8 +56,8 @@ const updateUser = async (req, res) => {
   try {
     const { id } = req.params;
     await User.update(req.body, {
-      where: { 
-        id_user: id 
+      where: {
+        id_user: id,
       },
     });
     return res.status(200).json({
@@ -72,28 +72,28 @@ const updateUser = async (req, res) => {
 
 const deleteUser = async (req, res) => {
   try {
-    const { id } = req.params
+    const { id } = req.params;
     const data = await Users.destroy({
       where: {
-        id_user: id
-      }
-    })
+        id_user: id,
+      },
+    });
 
-    if(data) {
+    if (data) {
       return res.status(200).json({
-        msg: "succes deleted user"
-      })
+        msg: "succes deleted user",
+      });
     }
 
     return res.status(404).json({
-      msg: 'user not found!'
-    })
+      msg: "user not found!",
+    });
   } catch (error) {
     return res.status(500).json({
-      msg: error.message
-    })
+      msg: error.message,
+    });
   }
-}
+};
 
 module.exports = {
   getAllUser,
