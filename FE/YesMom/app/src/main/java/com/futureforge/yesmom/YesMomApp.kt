@@ -69,7 +69,8 @@ fun YesMomApp(
                 DailyNotesPage()
             }
             composable(Screen.Profile.route) {
-                ProfilePage()
+                ProfilePage(   context = context,
+                    navController = navController)
             }
         }
     }

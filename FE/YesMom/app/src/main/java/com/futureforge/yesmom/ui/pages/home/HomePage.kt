@@ -12,11 +12,15 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -93,15 +97,32 @@ fun HomeContent() {
                     )
                 )
             }
-            Image(
-                painter = painterResource(id = R.drawable.img_dummy_profile_home),
-                contentDescription = "image profile",
-                contentScale = ContentScale.Crop,
+            Box(
                 modifier = Modifier
                     .width(50.dp)
-                    .height(50.dp)
+                    .height(50.dp),
+                contentAlignment = Alignment.TopEnd
+            ){
+                Icon(imageVector = Icons.Default.Notifications, contentDescription = "icon notification",
+                    modifier = Modifier
+                        .size(45.dp))
+                Box(modifier = Modifier
+                    .padding(top = 5.dp, end = 4.dp)
                     .clip(CircleShape)
-            )
+                    .background(color = Color(0xFFFF1313)),
+                    contentAlignment = Alignment.Center
+                ){
+                    Text(
+                        text = "2",
+                        style = TextStyle(
+                            fontSize = 14.sp,
+                            fontWeight = FontWeight(700),
+                            color = Color(0xFFFFFFFF),
+                        ),
+                        modifier = Modifier.padding(horizontal = 4.dp)
+                    )
+                }
+            }
 
 
         }
