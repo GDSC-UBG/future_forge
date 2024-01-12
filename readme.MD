@@ -2,9 +2,13 @@
 
 In an effort to support the well-being of women after giving birth, the "YesMom!" application is presented as an innovative solution to overcome the emotional challenges that young mothers often experience after giving birth. Baby blues is a common phenomenon that includes feelings of anxiety, sadness, and mood changes in mothers after giving birth. This application aims to provide the support, information and resources that mothers need to experience the postpartum period better.
 
+## Stage - 2 [Project]
+
+Project ini dibuat menggunakan express js sebagai web service dan kotlin sebagai client. web service bisa di akses di branch [be-dev](https://github.com/GDSC-UBG/future_forge/tree/be-dev), dan client side di branch [mobile-dev](https://github.com/GDSC-UBG/future_forge/tree/mobile-dev/FE)
+
 ## Stage - 2 [Usage]
 
-Based on the sequence diagram in [stage-1](https://) the feature that we created shows that users will receive a daily remainder notification, then click on the notification to add daily notes. Following are the procedures for using the application based on sequence diagrams and a few additions to support the process.
+Based on the sequence diagram in [stage-1](https://drive.google.com/file/d/1ZLoMWPsw7mnUXtV4cZcH6Qx2bzsz3_T-/view?usp=sharing) the feature that we created shows that users will receive a daily remainder notification, then click on the notification to add daily notes. Following are the procedures for using the application based on sequence diagrams and a few additions to support the process.
 
 - First, download and install the yesmom prototype application at the following [Link](https://)
 - Do **Register** and **Login**.
@@ -69,6 +73,7 @@ Based on the sequence diagram in [stage-1](https://) the feature that we created
 - Method:
   `GET`
 - Request:
+
   - body request
 
   - Response
@@ -95,6 +100,7 @@ Based on the sequence diagram in [stage-1](https://) the feature that we created
 - Method:
   `GET`
 - Request:
+
   - body request
 
   - Response
@@ -142,10 +148,13 @@ Based on the sequence diagram in [stage-1](https://) the feature that we created
 - Method:
   `DELETE`
 - Request:
+
   - body request
+
     ```
 
     ```
+
   - Response
     ```
     {
@@ -229,6 +238,7 @@ Based on the sequence diagram in [stage-1](https://) the feature that we created
 - Method:
   `DELETE`
 - Request:
+
   - body request
 
     ```
@@ -249,10 +259,13 @@ Based on the sequence diagram in [stage-1](https://) the feature that we created
 - Method:
   `GET`
 - Request:
+
   - body request
+
     ```
 
     ```
+
   - Response
     ```
     {
@@ -282,10 +295,13 @@ Based on the sequence diagram in [stage-1](https://) the feature that we created
 - Method:
   `GET`
 - Request:
+
   - body request
+
     ```
 
     ```
+
   - Response
     ```
     {
