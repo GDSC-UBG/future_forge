@@ -31,7 +31,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       child_count: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       job: {
         type: Sequelize.STRING
