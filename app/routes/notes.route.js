@@ -12,7 +12,7 @@ module.exports = (express, app, default_router = "/api") => {
   router.post('/notes', [verifyToken, checkField], NotesController.addNotes)
   router.delete('/notes/:id', [verifyToken], NotesController.deleteNotes)
   router.get('/notes', [verifyToken], NotesController.getAllNotes)
-  router.get('/notes/:id', [verifyToken], NotesController.getNote)
+  router.get('/notes/:id', [verifyToken], NotesController.getDetailNote)
   router.put('/notes/:id', [verifyToken, checkField], NotesController.updateNotes)
 
   app.use(default_router, router);
