@@ -11,10 +11,10 @@ module.exports = (express, app, default_router = "/api") => {
   const router = express.Router();
 
   
-  // router.get('/banner', [verifyToken, checkQuery], bannerController.getAllBanner)
-  // router.get('/banner/:id', [verifyToken], bannerController.getDetailBanner)
+  router.get('/feed', [verifyToken], feedController.getAllFeed)
+  router.get('/feed/:id', [verifyToken], feedController.getDetailFeed)
   router.post('/feed', [verifyToken, uploadFeed.single('image')], feedController.createFeed)
-  // router.delete('/banner/:id', [verifyToken], bannerController.deleteBanner)
+  router.delete('/feed/:id', [verifyToken], feedController.deleteFeed)
 
   app.use(default_router, router);
 };

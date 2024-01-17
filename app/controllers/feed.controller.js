@@ -1,65 +1,62 @@
 const {Feeds, ImageFeed, FeedReactions} = require('../models')
 
 
-// const getAllBanner = async (req, res) => {
-//   try {
-//     let page = Number.parseInt(req.query.page) || 1
-//     let perPage = Number.parseInt(req.query.perPage) || 10
-//     const userId = req.userId
+const getAllFeed = async (req, res) => {
+  try {
+    let page = Number.parseInt(req.query.page) || 1
+    let perPage = Number.parseInt(req.query.perPage) || 10
 
-//     const {count, rows} = await Banners.findAndCountAll({
-//       include: [
-//         {model: ImageBanners, attributes: ["image"]}
-//       ],
-//       limit: perPage,
-//       offset: (page - 1) * perPage
-//     })
+    const {count, rows} = await Feeds.findAndCountAll({
+      include: {all: true},
+      limit: perPage,
+      offset: (page - 1) * perPage
+    })
   
-//     const totalPage = Math.ceil(count / perPage)
+    const totalPage = Math.ceil(count / perPage)
   
-//     if (rows) {
-//       return res.status(200).json({
-//         page,
-//         results: rows,
-//         totalPage: totalPage,
-//         totalResult: count
-//       })
-//     }
+    if (rows) {
+      return res.status(200).json({
+        page,
+        results: rows,
+        totalPage: totalPage,
+        totalResult: count
+      })
+    }
   
-//     return res.status(404).json({
-//       msg: `Banners is empty!`
-//     })
-//   } catch (error) {
-//     return res.status(500).json({ msg: error.message })
-//   }
-// }
+    return res.status(404).json({
+      msg: `Feeds is empty!`
+    })
+  } catch (error) {
+    return res.status(500).json({ msg: error.message })
+  }
+}
 
-// const getDetailBanner = async (req, res) => {
-//   try {
-//     const id = req.params.id
+const getDetailFeed = async (req, res) => {
+  try {
+    const id = req.params.id
 
-//     const data = await Banners.findOne({
-//       include: { model: ImageBanners, attributes: ["image"]},
-//       where: {
-//         id_banner: id
-//       }
-//     })
+    const data = await Feeds.findOne({
+      include: { all: true},
+      where: {
+        id_feed: id
+      }
+    })
 
-//     if (data) {
-//       return res.status(201).json({
-//         msg: 'success retrive banner',
-//         data
-//       })
-//     }
+    if (data) {
+      return res.status(201).json({
+        msg: 'success retrive feed',
+        data
+      })
+    }
 
-//     return res.status(404).json({
-//       msg: `not found banner with id ${id}`
-//     })
+    return res.status(404).json({
+      msg: `not found feed with id ${id}`
+    })
 
-//   } catch (error) {
-//     return res.status(500).json({msg: error.message})
-//   }
-// }
+  } catch (error) {
+    return res.status(500).json({msg: error.message})
+  }
+}
 
 const createFeed = async (req, res) => {
   try {
@@ -90,28 +87,31 @@ const createFeed = async (req, res) => {
   }
 }
 
-// const deleteBanner = async (req, res) => {
-//   try {
+const deleteFeed = async (req, res) => {
+  try {
 
-//     const {id} = req.params
+    const {id} = req.params
 
-//     const data = await Banners.destroy({
-//       where: {id_banner: id}
-//     })
+    const data = await Feeds.destroy({
+      where: {id_feed: id}
+    })
 
-//     if (data) {
-//       return res.status(200).json({ msg: 'succes deleted banner'})
-//     }
+    if (data) {
+      return res.status(200).json({ msg: 'succes deleted feed'})
+    }
 
-//     return res.status(404).json({
-//       msg: `not found banner with id ${id}`
-//     })
-//   } catch (error) {
-//     res.status(500).json({msg: error.message})
-//   }
-// }
+    return res.status(404).json({
+      msg: `not found feed with id ${id}`
+    })
+  } catch (error) {
+    res.status(500).json({msg: error.message})
+  }
+}
 
 module.exports = {
-  createFeed
+  createFeed,
+  getAllFeed,
+  getDetailFeed,
+  deleteFeed
 }
 
