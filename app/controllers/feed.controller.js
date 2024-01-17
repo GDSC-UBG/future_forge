@@ -1,3 +1,4 @@
+const { where } = require('sequelize')
 const {Feeds, ImageFeed, FeedReactions} = require('../models')
 
 
@@ -74,12 +75,6 @@ const createFeed = async (req, res) => {
       })
     }
 
-    await FeedReactions.create({
-      id_feed: feed.id_feed,
-      id_user: id_user,
-      type: 0
-    })
-
     res.status(201).json(feed)
 
   } catch (error) {
@@ -108,10 +103,34 @@ const deleteFeed = async (req, res) => {
   }
 }
 
+const reaction = async (req, res) => {
+  const {type, id_feed} = req.query
+  const id_user = req.userId
+
+  const existingReaction = await FeedReactions.findOne({
+    where: {
+      id_feed,
+      id_user,
+      type
+    }
+  })
+
+  if(existingReaction) {
+    await FeedReactions.destroy({
+      where: {type, id_user, id_feed}
+    })
+    res.status(200).json({msg: 'destroy'})
+  } else {
+    await FeedReactions.create({type, id_user, id_feed})
+    res.status(200).json({msg: "ok"})
+  }
+}
+
 module.exports = {
   createFeed,
   getAllFeed,
   getDetailFeed,
-  deleteFeed
+  deleteFeed,
+  reaction
 }
 
