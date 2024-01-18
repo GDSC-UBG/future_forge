@@ -5,7 +5,7 @@ const { where } = require("sequelize");
 
 const getAllUser = async (req, res) => {
   try {
-    const data = await Users.findAll({});
+    const data = await Users.findAll()
     return res.status(200).json({
       msg: "Success retrieve data users",
       data,
@@ -20,11 +20,18 @@ const getAllUser = async (req, res) => {
 const completedProfileUser = async (req, res) => {
   try {
     const id = req.userId;
-    await Users.update(req.body, {
+    const ImagePath = req.file ? req.file.filename : null
+    const query = {
+      ...req.body,
+      picture: ImagePath 
+    }
+    await Users.update(query, {
       where: {
         id_user: id,
       },
-    });
+    });    
+    console.log(req.body)
+    
     return res.status(200).json({
       msg: "succes create detail user",
     });
