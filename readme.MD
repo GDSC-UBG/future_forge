@@ -2,12 +2,27 @@
 
 In an effort to support the well-being of women after giving birth, the "YesMom!" application is presented as an innovative solution to overcome the emotional challenges that young mothers often experience after giving birth. Baby blues is a common phenomenon that includes feelings of anxiety, sadness, and mood changes in mothers after giving birth. This application aims to provide the support, information and resources that mothers need to experience the postpartum period better.
 
-## Stage - 3 [Usage]
+# Meet Our Team
 
-1. First you can download the apps bellow:
-   [Link Download](https://)
-2. You can login into the apps
-3. firs
+![image team](./docs/assets/team.png)
+
+# Screenshoot
+
+![image team](./docs/assets/ss.png)
+
+# Stage - 3 [Usage]
+
+- download aplikasi di link [berikut.](https://)
+- atau jika ingin build dari source code bisa clone [disini](<[https://](https://github.com/GDSC-UBG/mobile-dev)>).
+- register dan login akun
+- untuk melakukan daily notes:
+  - kamu bisa ke halaman notes
+  - kamu bisa memilih minggu yang belum kamu isi
+  - setelah itu kamu bisa memilih hari yang sesuai dengan hari kamu ngisi
+  - kemudian bisa tambah notes dengan klik button tambah note
+  - kamu bisa memberikan perasaanmu hari ini, dan memberikan alasan kamu.
+  - klik simpan untuk simpan daily notes.
+  - hasil simpan akan terlihat di daftar daily notes
 
 ## Stage - 2 [Project]
 
