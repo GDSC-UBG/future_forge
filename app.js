@@ -12,7 +12,7 @@ app.use(cors());
 
 // Ganti penggunaan bodyParser.json() menjadi bodyParser.urlencoded()
 // dan atur opsi extended ke true
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 const default_router = `/api/${process.env.APP_VERSION}`;
 require("./app/routes")(express, app, default_router);
