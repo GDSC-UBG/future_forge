@@ -1,6 +1,6 @@
 const { DailyNotes, User } = require("../models");
 
-const getNote = async (req, res) => {
+const getDetailNote = async (req, res) => {
   try {
     const { id } = req.params;
     const data = await DailyNotes.findOne({
@@ -27,11 +27,21 @@ const getNote = async (req, res) => {
 
 const getAllNotes = async (req, res) => {
   try {
-    const data = await DailyNotes.findAll({});
-    if (data) {
+    let perPage = Number.parseInt(req.query.perPage)|| 10
+    let page = Number.parseInt(req.query.page) || 1
+    const {count, rows} = await DailyNotes.findAndCountAll({ 
+      limit: perPage,
+      offset: (page - 1) * perPage
+    });
+   
+    const totalPage = Math.ceil(count / perPage)
+    if (rows) {
       return res.status(201).json({
         msg: "succes retrive all notes",
-        data,
+        page: page,
+        results: rows,
+        totalPage: totalPage,
+        totalResult: count
       });
     }
     return res.status(404).json({
@@ -118,5 +128,5 @@ module.exports = {
   deleteNotes,
   updateNotes,
   getAllNotes,
-  getNote,
+  getDetailNote,
 };
