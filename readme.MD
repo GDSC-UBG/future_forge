@@ -2,17 +2,27 @@
 
 In an effort to support the well-being of women after giving birth, the "YesMom!" application is presented as an innovative solution to overcome the emotional challenges that young mothers often experience after giving birth. Baby blues is a common phenomenon that includes feelings of anxiety, sadness, and mood changes in mothers after giving birth. This application aims to provide the support, information and resources that mothers need to experience the postpartum period better.
 
-# MEET OUR TEAM
-1. Sayidina ahmadal qososyi (Hacker & PIC Team)
-2. Dion arifin (Hacker)
-3. M. Rizki (Hipster)
-4. Danti triadinda sari (Hustler)
+# Meet Our Team
 
-## Stage - 3 [Usage]
-1. First you can login 
+![image team](./docs/assets/team.png)
 
+# Screenshoot
 
-In an effort to support the well-being of women after giving birth, the "YesMom!" application is presented as an innovative solution to overcome the emotional challenges that young mothers often experience after giving birth. Baby blues is a common phenomenon that includes feelings of anxiety, sadness, and mood changes in mothers after giving birth. This application aims to provide the support, information and resources that mothers need to experience the postpartum period better.
+![image team](./docs/assets/ss.png)
+
+# Stage - 3 [Usage]
+
+- download aplikasi di link [berikut.](<[https://](https://drive.google.com/file/d/1rb8ZoM_6RxCyoJ4k9Czv1jjs3hO6GvMv/view?usp=drive_link)>)
+- atau jika ingin build dari source code bisa clone [disini](<[https://](https://github.com/GDSC-UBG/mobile-dev)>).
+- register dan login akun
+- untuk melakukan daily notes:
+  - kamu bisa ke halaman notes
+  - kamu bisa memilih minggu yang belum kamu isi
+  - setelah itu kamu bisa memilih hari yang sesuai dengan hari kamu ngisi
+  - kemudian bisa tambah notes dengan klik button tambah note
+  - kamu bisa memberikan perasaanmu hari ini, dan memberikan alasan kamu.
+  - klik simpan untuk simpan daily notes.
+  - hasil simpan akan terlihat di daftar daily notes
 
 ## Stage - 2 [Project]
 
@@ -22,7 +32,7 @@ Project ini dibuat menggunakan express js sebagai web service dan kotlin sebagai
 
 Based on the sequence diagram in [stage-1](https://drive.google.com/file/d/1ZLoMWPsw7mnUXtV4cZcH6Qx2bzsz3_T-/view?usp=sharing) the feature that we created shows that users will receive a daily remainder notification, then click on the notification to add daily notes. Following are the procedures for using the application based on sequence diagrams and a few additions to support the process.
 
-- First, download and install the yesmom prototype application at the following [Link](https://drive.google.com/file/d/1GgvGpEpiopOsLwMenamYNjEE1NYdhr30/view?usp=drive_link)
+- First, download and install the yesmom prototype application at the following [Link](https://)
 - Do **Register** and **Login**.
 - Create a schedule on the calendar page, suggestions for making a schedule for the near future so that you can get test notifications immediately, for example in the next 5 minutes.
 - then finally add your daily notes.
