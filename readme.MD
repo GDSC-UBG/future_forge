@@ -4,11 +4,11 @@ In an effort to support the well-being of women after giving birth, the "YesMom!
 
 # Meet Our Team
 
-![image team](./docs/assets/team.png)
+![image team](https://ik.imagekit.io/y2e3ephuz/team.png?updatedAt=1705623374462)
 
 # Screenshoot
 
-![image team](./docs/assets/ss.png)
+![image team](https://ik.imagekit.io/y2e3ephuz/ss.png?updatedAt=1705623365674)
 
 # Stage - 3 [Usage]
 
