@@ -12,8 +12,8 @@ In an effort to support the well-being of women after giving birth, the "YesMom!
 
 # Stage - 3 [Usage]
 
-- download aplikasi di link [berikut.](<[https://](https://drive.google.com/file/d/1rb8ZoM_6RxCyoJ4k9Czv1jjs3hO6GvMv/view?usp=drive_link)>)
-- atau jika ingin build dari source code bisa clone [disini](<[https://](https://github.com/GDSC-UBG/mobile-dev)>).
+- download aplikasi di link [berikut](https://drive.google.com/file/d/1rb8ZoM_6RxCyoJ4k9Czv1jjs3hO6GvMv/view?usp=drive_link)
+- atau jika ingin build dari source code bisa clone [disini](https://github.com/GDSC-UBG/mobile-dev).
 - register dan login akun
 - untuk melakukan daily notes:
   - kamu bisa ke halaman notes
